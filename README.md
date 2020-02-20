@@ -10,7 +10,7 @@ This useful for local development when you want to bypass kubernetes  (i.e. quic
 3. Setup python virtual environment and install packages with 'pip install -r requirements.txt'
 CD to ./containers/web
 4. python manage.py runserver 8080 --settings=web.settings_local
-5. visit page at http://localhost:8080/admin or http://localhost:8080/energyaudit
+5. visit page at http://localhost:8080/admin or http://localhost:8080/admin/elabels
 
 Admin username = admin
 Admin password = LetMeIn!
