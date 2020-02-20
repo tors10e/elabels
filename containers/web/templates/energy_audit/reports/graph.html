@@ -1,0 +1,66 @@
+<script>
+    /**
+    {{chart_elements}}
+    */
+    var WIDTH_IN_PERCENT_OF_PARENT = 85,
+        HEIGHT_IN_PERCENT_OF_PARENT = 70;
+
+    var {{chart_div}}_d3 = Plotly.d3;
+    var {{chart_div}}_img = {{chart_div}}_d3.select({{chart_div}})
+        .append({% if print %}'img'{% else %}'div'{% endif %})
+            .style(
+                {
+                    width: WIDTH_IN_PERCENT_OF_PARENT + '%',
+                    'min-width': '340px',
+                    'margin-left': '10px',
+
+                    height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+                    'margin-top': '10px'
+                }
+            );
+
+     console.log({{chart_div}}_img);
+
+    {% block chart_definition %}
+    {% endblock %}
+
+    var {{chart_div}}_node = {{chart_div}}_img.node();
+
+    Plotly.newPlot({{chart_div}}_node, data, layout)
+    {% if print %}
+    .then(
+        function(gd)
+         {
+          Plotly.toImage(gd,{height:400,width:600})
+             .then(
+                function(url)
+             {
+                 {{chart_div}}_img.attr("src", url);
+                 return Plotly.toImage(gd,{format:'jpeg',height:400,width:400});
+             }
+             )
+        }
+    );
+    {% endif %}
+
+
+    if (window.graph_responses == null) {
+        window.graph_responses = [];
+    }
+
+    window.graph_responses.push(
+        function() {
+            Plotly.Plots.resize({{chart_div}}_node);
+            console.log('Resizing {{chart_div}}');
+        }
+    )
+
+    window.onresize = function() {
+        window.graph_responses.forEach(
+            function(resizer) {
+                resizer();
+            }
+        )
+    };
+
+</script>

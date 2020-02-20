@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12.1
+    env_file: .env
+    volumes:
+      - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
+  web:
+    build: ./web
+    env_file: .env
+#    restart: always
+    expose:
+      - "8000"
+    links:
+    - db
+    volumes:
+      - ./web:/usr/source/app
+      - /static:/static
+      - /tmp/veat/log:/var/log/veat
+    depends_on:
+      - db
+    entrypoint: ./entrypoint.sh
+
+  nginx:
+    #restart: always
+    image: nginx:1.13-alpine
+    ports:
+      - "8000:8000"
+    depends_on:
+      - web
+    links:
+      - web:web
+    volumes:
+    - ./web:/usr/source/app
+    - /static:/static
+    - ./nginx/conf:/etc/nginx/conf.d

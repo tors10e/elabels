@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block progress %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'vessel-profile-update' pk %}" style="color: white">1. Vessel Profile</a>
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'engines' pk %}" style="color: white">2. Equipment Profile</a>
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            3. Operating Modes
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'equipment' pk %}" style="color: white">4. Equipment Detail</a>
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'report' pk %}" style="color: white">5. Results</a>
+        </div>
+    </div>
+{% endblock progress %}
+{% block instructions %}
+These are the results of your audit. They have been separated by report type, and are available for download as a PDF
+{% endblock %}
+{% block content %}
+    <p>
+        <h1>
+            {{ vessel_name }} energy use profile
+            <a href='./print' title="Download as PDF" style="float:right">
+                <img src="{% static '/images/download.png' %}" style="height:40px;width:40px">
+            </a>
+        </h1>
+
+    </p>
+    <div id="print_fuel_use_by_load_type">
+    {% include "energy_audit/reports/fuel_use_by_load_type.html" with print=print%}
+    </div>
+    <div id="print_fuel_use_by_operating_mode">
+    {% include "energy_audit/reports/fuel_use_by_operating_mode.html" with print=print%}
+    </div>
+    <div id="print_propulsion_fuel_consumption">
+    {% include "energy_audit/reports/propulsion_fuel_consumption.html" with print=print%}
+    </div>
+    <div id="print_refrigeration_fuel_consumption">
+        {% include "energy_audit/reports/refrigeration_fuel_consumption.html" with print=print%}
+    </div>
+    <div id="print_engine_fuel_consumption">
+        {% include "energy_audit/reports/engine_fuel_consumption.html" with print=print%}
+    </div>
+    <div id="print_hydraulic_fuel_consumption">
+        {% include "energy_audit/reports/hydraulic_fuel_consumption.html" with print=print%}
+    </div>
+    <div id="print_ac_fuel_consumption">
+        {% include "energy_audit/reports/ac_fuel_consumption.html" with print=print%}
+    </div>
+    <div id="print_dc_fuel_consumption">
+        {% include "energy_audit/reports/dc_fuel_consumption.html" with print=print%}
+    </div>
+    {% include "energy_audit/reports/ecm_links.html" %}
+    {% if not print %}
+    {% include "energy_audit/reports/disclaimer.html" %}
+    {% endif %}
+
+     <div class="col-md-1">
+    <a class="btn btn-default" href='{% url 'equipment' pk %}' role="button">Back</a>
+ </div>
+{% endblock %}

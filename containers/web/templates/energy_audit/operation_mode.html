@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load bootstrap3 static %}
+{% load static %}
+
+{% block progress %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'vessel-profile-update' pk %}" style="color: white">1. Vessel Profile</a>
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%">
+            <a href="{% url 'engines' pk %}" style="color: white">2. Equipment Profile</a>
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-info" style="width: 20%">
+            3. Operating Modes
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            <a href="{% url 'equipment' pk %}" style="color: white">4. Equipment Detail</a>
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            <a href="{% url 'report' pk %}" style="color: white">5. Results</a>
+        </div>
+    </div>
+{% endblock progress %}
+{% block header %}
+    <h1 class="text-capitalize">
+        Operating Mode Type: {{ operating_mode_type }}
+    </h1>
+{% endblock header %}
+{% block instructions %}
+    {{ block.super }}
+    <h3>
+    Click "next" to accept the default values or enter your own to customize the report.
+    </h3>
+    <p>
+        <span class="glyphicon glyphicon-asterisk" style="color:red"></span> indicates a required field.
+    </p>
+{% endblock instructions %}
+{% block content %}
+    {% bootstrap_form_errors propmodes error_types="non_field_errors" %}
+    <h2> Propulsion modes </h2>
+    <h4> The following three percentages must sum to 100%.</h4>
+    <form class="form-horizontal" method="Post" id="scenario-form-one">
+        {% csrf_token %}
+        <fieldset>
+            {% for field in propmodes %}
+                <div class="row">
+                    <div class="col-md-5">{% bootstrap_label field.label %}</div>
+                    {% if field.field.required %}
+                        <div class="col-md-4">{% bootstrap_field field show_label=False show_help=False addon_after='<span class="glyphicon glyphicon-asterisk"></span>'%}</div>
+                    {% else %}
+                        <div class="col-md-4">{% bootstrap_field field show_label=False show_help=False %}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </fieldset>
+    {% bootstrap_form_errors form error_types="non_field_errors" %}
+    <h2>Operating mode details</h2>
+        {% csrf_token %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <fieldset>
+            {% for field in form %}
+                <div class="row">
+                    <div class="col-md-5">{% bootstrap_label field.label %}</div>
+                    {% if field.field.required %}
+                        <div class="col-md-4">{% bootstrap_field field show_label=False show_help=False addon_after='<span class="glyphicon glyphicon-asterisk"></span>'%}</div>
+                    {% else %}
+                        <div class="col-md-4">{% bootstrap_field field show_label=False show_help=False %}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </fieldset>
+        <div class="row button-group">
+            <div class="col-md-1">
+                <a class="btn btn-default" href='{% url 'engines' pk %}' role="button">Back</a>
+            </div>
+            <div class="col-md-1">
+                <input class="btn btn-default" type="submit" value="Next">
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+{% block sidebar_right %}
+    {% include "energy_audit/sidebar_right_engine.html" %}
+{% endblock %}

@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: veat-db
+  labels:
+    name: veat-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: veat-db
+  template:
+    metadata:
+      labels:
+        app: veat-db
+    spec:
+      containers:
+      - name: veat-db
+        image: gcr.io/vessel-eenrgy/veat-db:v1
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_PASSWORD
+          value: ShowMeTh3Data!
+        - name: POSTGRES_USER
+          value: postgres
+        imagePullPolicy: Always
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgres-storage
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-claim
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

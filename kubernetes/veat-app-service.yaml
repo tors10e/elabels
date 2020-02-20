@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: veat-app
+  labels:
+    name: veat-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    name: veat-app

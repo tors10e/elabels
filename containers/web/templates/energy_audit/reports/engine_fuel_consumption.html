@@ -1,0 +1,55 @@
+{% extends "energy_audit/reports/report-panel.html" %}
+{% load static %}
+{% block header %}Diesel Engine Fuel Consumption{% endblock %}
+{% block body %}
+    <p>
+       Diesel engines are commonly used on Alaskan fishing vessels for propulsion, auxiliary AC, or hydraulic power
+        generation. Brake specific fuel consumption (BSFC) is a measure of the efficiency of an engine. BSFC defines
+        the amount of fuel required to produce a specified amount of work.  All engines require some energy to
+        overcome internal friction and compression forces.  At light loads (less than 20%-30% of the engines rated
+        HP) diesel engines have a higher BSFC (lowered efficiency) because the energy needed to overcome internal
+        forces in the engine represents a higher percentage of the total load.  As the load increases, BSFC is
+        reduced and engine efficiency improves rapidly, reaching peak efficiency between 50 and 80% of the
+        continuous load rating.
+
+        </br>
+
+        <img src="{% static 'energy_audit/ecm_charts/bsfcVsLoad.png' %}" alt="bsfc chart"
+             id="cap_chart">
+
+
+    </p>
+    <table class="table striped-table">
+        <thead>
+        <h3> Simple steps to save fuel </h3>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>“Right size” the engine for the anticipated load - </strong>Diesel engines are most
+                    efficient when running fully loaded and providing between 20 and 80% of their rated horsepower.
+                    At light loads, diesel engines use more fuel per horse power produced. Where possible, “right
+                    size” the engine for the average load.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Modern electronically governed diesel engines can be more fuel efficient, especially at
+                        light loads.</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Minimize parasitic loads - </strong>de-clutch hydraulic pumps and deck hoses whenever
+                    possible.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Keep engine rooms well ventilated - </strong> For every 10° increase/decrease in engine
+                    room temperature, fuel consumption will increase/decrease by ~ 0.7%.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "energy_audit/reports/report-panel.html" %}
+{% load static %}
+{% block header %}DC Fuel Consumption{% endblock %}
+{% block body %}
+    <p>
+        DC electric power is commonly used for navigation equipment and cabin lighting on Alaskan fishing vessels.
+        Though typically small in comparison to the other loads on a fishing vessel, DC power is not free. DC
+        alternator efficiency ranged from 30 to 70% depending on alternator speed, output and belt tension among
+        other factors. At an alternator efficiency of 50%, a round trip battery charge/discharge efficiency
+        of 80%, and a fuel price of $3/gallon, DC electricity on a fishing vessel costs approximately 60 cents/kWh in
+        fuel. The figure below shows a contour plot of alternator efficiency distributed by manufacturer Delco-Remy Inc
+        (reproduced from "Improving Alternator Efficiency Measurably Reduces Fuel Cost" by Mike Bradfield).
+
+        </br>
+        <img src="{% static 'energy_audit/ecm_charts/alternator_efficiency.png' %}"
+             alt="alternator efficiency chart" id="alternator efficiency">
+    </p>
+    <table class="table striped-table">
+        <thead>
+        <h3> Simple steps to save fuel </h3>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Belt tension - </strong>Improperly adjusted alternator belts reduce efficiency and
+                    increase alternator wear.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Switch to LED lighting - </strong> LED lighting is up to 10 times more efficient than
+                    incandescent lights and about twice as efficient as compact fluorescents.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>"Right size" alternator - </strong> Select an alternator with a peak efficiency that
+                    matches your average load and engine speed.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

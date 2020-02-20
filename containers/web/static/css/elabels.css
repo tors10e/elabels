@@ -1,0 +1,96 @@
+#main {
+
+}
+
+#banner {
+
+}
+
+.logo_container {
+    /*Adjust this to adjust the width of the afdf logo, and the height will scale appropriately.*/
+    border: solid red 1px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    position: relative;
+    float: left;
+    width:  auto;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+#app_title {
+
+}
+
+#body {
+
+}
+
+#title {
+
+}
+
+small {
+    color: #DDB428;
+}
+
+#progress {
+
+}
+
+#left-sidebar {
+    flex-grow: 2;
+}
+
+#scrollable-body {
+    flex-grow: 9;
+}
+
+#right-sidebar {
+    flex-grow: 1;
+}
+
+.side-links {
+
+}
+
+.row-fluid {
+    display: flex;
+}
+
+.col {
+    display: flex;
+}
+
+.col-fluid {
+    display: flex;
+}
+
+.container-fluid {
+    width: auto;
+}
+
+.bd-navbar {
+    min-height: 4rem;
+    background-color: steelblue;
+}
+
+.formset-title {
+    padding-left: 0;
+}
+
+.has-error {
+    color: red;
+}
+
+.button-group {
+    margin-top: 20px;
+}

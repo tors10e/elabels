@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: veat-app
+  labels:
+    name: veat-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: veat-app
+    spec:
+      imagePullSecrets:
+      - name: vessel-energy-secret
+      containers:
+      - command:
+        - ./entrypoint.sh
+        env:
+        - name: DB_NAME
+          value: vessel_energy
+        - name: DB_PASS
+          value: ShowMeTh3Energy!
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_SERVICE
+          value: $POSTGRES_SERVICE_HOST
+        - name: DB_USER
+          value: veat
+        - name: DJANGO_SETTINGS_MODULE
+          value: web.settings
+        - name: DJANGO_SU_EMAIL
+          value: admin@example.com
+        - name: DJANGO_SU_NAME
+          value: admin
+        - name: DJANGO_SU_PASSWORD
+          value: LetMeIn!
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        - name: POSTGRES_USER
+          value: postgres
+        name: veat-app
+        image: gcr.io/vessel-eenrgy/veat_app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /var/log/veat
+          name: log-persistent-storage
+      volumes:
+        - name: log-persistent-storage
+          persistentVolumeClaim:
+            claimName: log-volumeclaim

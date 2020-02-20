@@ -1,0 +1,44 @@
+{% extends "reports/report-panel.html" %}
+{% block header %}Propulsion Loads{% endblock %}
+{% block body %}
+<p>
+The figure  below shows the propulsion load estimates for the FV {{vessel_name}} based on energy audits of similar
+vessels and information you provided. The amount of power needed to move a vessel through the water increases
+exponentially with speed. At low speeds, water friction and turbulence are the main sources of resistance.  However, as
+speed increases, wave-making resistance associated with the bow and stern waves increase exponentially until hull speed
+is reached.
+</p>
+<div id="propulsion_loads_line_chart" class="report-chart"></div>
+<div class="panel panel-success report-panel">
+    <div class="panel-heading">
+        <h4>Simple steps to save fuel:</h4>
+    </div>
+    <ul class="panel-body list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>Install a fuel flow meter</strong> - A fuel flow meter provides the information needed to adjust speed and optimize
+        fuel efficiency in real time based on weather and sea conditions.
+        </li>
+        <li class="list-group-item">
+            <strong>Adjust your autopilot</strong> - Ensure your autopilot is tuned to minimize yaw and steer the straightest course possible.
+        </li>
+        <li class="list-group-item">
+            <strong>Plan the route and timing</strong> - Take advantage of tides, currents, and predicted winds to save fuel.
+        </li>
+        <li class="list-group-item">
+            <strong>Reduce drag</strong> - Keep the hull clean by removing marine growth regularly.  Minimize underwater appendages.
+        Polish the propeller when hauled out.  Proper hull and propeller maintenance can reduce propulsion costs by
+        10 to 20% at transit speeds.
+        </li>
+        <li class="list-group-item">
+            <strong>Use paravane stabilizers only when necessary</strong> - paravane stabilizers can increase propulsion costs by 60%
+        at transit speeds.
+        </li>
+        <li class="list-group-item">
+            <strong>Reduce vessel weight</strong> - Loaded or tanked configurations increase fuel consumption at transit speeds by 30%.
+        </li>
+    </ul>
+</div>
+{% with line_chart_elements=propulsion_loads_line_chart chart_div="fuel_use_by_operating_mode_pie_chart" chart_div='propulsion_loads_line_chart' chart_title='Propulsion Loads' chart_xlabel='Speed' chart_ylabel='Power' chart_height=400 chart_width=600 %}
+{% include 'reports/line_chart.html' %}
+{% endwith %}
+{% endblock %}

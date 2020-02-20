@@ -1,0 +1,47 @@
+[
+  {
+    "model": "elabels.applicationmethod",
+    "pk": 1,
+    "fields": {
+      "created_date": "2020-02-20T19:48:10.263Z",
+      "modified_date": "2020-02-20T19:48:10.263Z",
+      "name": "Foliar Spray"
+    }
+  },
+  {
+    "model": "elabels.applicationmethod",
+    "pk": 2,
+    "fields": {
+      "created_date": "2020-02-20T19:48:17.777Z",
+      "modified_date": "2020-02-20T19:48:17.778Z",
+      "name": "Soil Drench"
+    }
+  },
+  {
+    "model": "elabels.applicationmethod",
+    "pk": 3,
+    "fields": {
+      "created_date": "2020-02-20T19:48:23.448Z",
+      "modified_date": "2020-02-20T19:48:23.449Z",
+      "name": "Soil Injection"
+    }
+  },
+  {
+    "model": "elabels.applicationmethod",
+    "pk": 4,
+    "fields": {
+      "created_date": "2020-02-20T19:48:27.384Z",
+      "modified_date": "2020-02-20T19:48:27.384Z",
+      "name": "Aerial"
+    }
+  },
+  {
+    "model": "elabels.applicationmethod",
+    "pk": 5,
+    "fields": {
+      "created_date": "2020-02-20T20:05:29.938Z",
+      "modified_date": "2020-02-20T20:05:29.938Z",
+      "name": "Seed Treatment"
+    }
+  }
+]

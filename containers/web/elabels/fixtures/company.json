@@ -1,0 +1,16 @@
+[
+  {
+    "model": "elabels.company",
+    "pk": 1,
+    "fields": {
+      "created_date": "2020-02-20T17:12:02.617Z",
+      "modified_date": "2020-02-20T17:17:33.312Z",
+      "name": "Loveland",
+      "line_1": "C/o",
+      "line_2": "41110 136th",
+      "city": "gig harbor",
+      "state": "wa",
+      "zip_code": "98332"
+    }
+  }
+]

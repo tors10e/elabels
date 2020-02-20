@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block instructions %}
+    {{ block.super }}Please read over the policy below.
+    {{ endblock }}
+{% endblock instructions %}
+{% block content %}
+    <p>
+<h3>PRIVACY POLICY</h3>
+This privacy policy governs your use of the Fishing Vessel Energy Analysis Tool (“Application”). The Application
+        provides information about how fishing vessels consume fuel.
+    </p>
+<p>
+<h4>User Provided Information</h4>
+The Application obtains the information you provide as you respond to questions. The information you provide to the
+        Application will be stored by the Application with no reference to an email address, name or other information intended for identification. If you enter a profile name, it will be stored by the Application, but the profile name does not need to have any relevance to you or a vessel.
+When you register with us and use the Application, you generally provide (a) your name, email address, age, user name, password and other registration information and; (b) information you enter into our system when using the Application.
+</p>
+<p>
+<h4>Automatically Collected Information</h4>
+In addition, the Application may collect certain information automatically, including, but not limited to, the type of device you use, your devices unique device ID, the IP address of your device, your operating system, the type of Internet browsers you use, and information about the way you use the Application.
+</p>
+<p>
+        <h4>Location Information</h4>
+This Application does NOT collect precise information about the location of your device.
+</p>
+<p>
+       <h4>Third Party Access to Information</h4>
+We may disclose User Provided and Automatically Collected Information:
+
+        1)	as required by law, such as to comply with a subpoena, or similar legal process;
+
+        2)	with our trusted services providers who work on our behalf, do not have an independent use of the information we
+        disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
+</p>
+<p>
+        <h4>What are my opt-out rights?</h4>
+You may choose not to respond to any question in the Application. You will have access to energy conservation measure documentation and resources regardless of how much information you provide, though the results will become more specifically matched to the profile you enter as you add more information.
+</p>
+<p>
+        <h4>Data Retention Policy, Managing Your Information</h4>
+We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We
+        will retain Automatically Collected information for up to 24 months and thereafter may store it in aggregate.
+        If you’d like us to delete User Provided Data that you have provided via the Application, please contact us
+        at info@afdf.org and we will respond in a reasonable time.
+</p>
+        <h4>Children</h4>
+We do not use the Application to knowingly solicit data from or market to children under the age of 13.
+
+        <h4>Security</h4>
+We are concerned about safeguarding the confidentiality of your information. We provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve our Application. Please be aware that, although we endeavor to provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.
+<p>
+        <h4>Changes</h4>
+This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by posting the new Privacy Policy here.
+</p>
+        <h4>Your Consent</h4>
+By using the Application, you are consenting to our processing of your information as set forth in this Privacy Policy now and as amended by us. "Processing,” means using or touching information in any way, including, but not limited to, collecting, storing, deleting, using, combining and disclosing information, all of which activities will take place in the United States. If you reside outside the United States your information will be transferred, processed and stored there under United States privacy standards.
+<p>
+            <h4>Contact us</h4>
+If you have any questions regarding privacy while using the Application, or have questions about our practices,
+        please contact us via email at info@afdf.org.
+</p>
+     <a class="btn btn-lg btn-primary" href="{% url 'index' %}" role="button">Return To Intro Page</a>
+{% endblock %}

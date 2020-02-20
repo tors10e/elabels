@@ -1,0 +1,23 @@
+{% extends 'energy_audit/reports/graph.html' %}
+    {% block chart_definition %}
+        var data = [{
+            values: [
+                {% for percentage in chart_elements.values %}
+                {{percentage}},
+                {% empty %}
+                100
+                {% endfor %}
+            ],
+            labels: [
+                {% for label in chart_elements.labels %}
+                    '{{label}}',
+                    {% empty %}
+                    'No data available.'
+                {% endfor %}
+            ],
+            type: 'pie',
+            marker: {colors: {% include 'color_palette.html' %}}
+        }];
+
+        var layout = {};
+    {% endblock %}

@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["http://35.232.113.60"],
+    "responseHeader": ["Content-Type"],
+    "method": ["GET", "HEAD", "DELETE"],
+    "maxAgeSeconds": 1800
+    }
+]

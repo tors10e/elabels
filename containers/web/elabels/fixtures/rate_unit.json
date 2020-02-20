@@ -1,0 +1,12 @@
+[
+  {
+    "model": "elabels.rateunit",
+    "pk": 1,
+    "fields": {
+      "created_date": "2020-02-20T19:47:52.752Z",
+      "modified_date": "2020-02-20T19:47:52.752Z",
+      "acronym": "fl. oz. per 100 lb.",
+      "description": "Fluid ounces per 100 pounds weight"
+    }
+  }
+]

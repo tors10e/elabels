@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load bootstrap3 static %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static '/js/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#form-container').formset({
+                prefix: '{{ operating_mode_formset.prefix }}'
+            });
+        })
+    </script>
+{% endblock javascript %}
+{% block progress %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" style="width: 20%">
+            1. Vessel Profile
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            2. Equipment Profile
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            3. Operating Mode Profiles
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            4. Equipment Detail
+        </div>
+        <div class="progress-bar" style="width: 20%">
+            5. Results
+        </div>
+    </div>
+{% endblock progress %}
+{% block header %}
+    <h1>Vessel Profile</h1>
+{% endblock header %}
+{% block instructions %}
+    {{ block.super }}
+    <h5>
+    Fill out the form below and add an operating mode for each fishery that the vessel
+participates in. Click the "Next” button when done to continue.
+    </h5>
+    <p>
+        <span class="glyphicon glyphicon-asterisk" style="color:red"></span> indicates a required field.
+    </p>
+{% endblock instructions %}
+{% block content %}
+    {% bootstrap_form_errors scenario_form error_types="non_field_errors" %}
+    {% bootstrap_formset_errors operational_modes %}
+    <form class="form-horizontal" method="Post" id="scenario-form">
+        {% csrf_token %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <fieldset>
+            {% for field in scenario_form %}
+                <div class="row">
+                    <div class="col-md-5">{% bootstrap_label field.label %}:</div>
+                    {% if field.field.required %}
+                        <div class="col-md-4">
+                            {% bootstrap_field field show_label=False show_help=False addon_after='<span class="glyphicon glyphicon-asterisk" style="color:red"></span>' %}
+                        </div>
+                    {% else %}
+                        <div class="col-md-4">{% bootstrap_field field show_label=False show_help=False %}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </fieldset>
+    <h3>Operating Modes</h3>
+        <table class="table">
+                {{ operational_modes.management_form }}
+                {% for form in operational_modes.forms %}
+                    {% bootstrap_form_errors form error_types="non_field_errors" %}
+                    {% if forloop.first %}
+                        <thead>
+                        <tr>
+                            {% for field in form.visible_fields %}
+                                <th>{{ field.label|capfirst }}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                    {% endif %}
+                    <tr class="{% cycle row1 row2 %} formset_row">
+                        {% for field in form.visible_fields %}
+                            <td>
+                                {# Include the hidden fields in the form #}
+                                {% if forloop.first %}
+                                    {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                    {% endfor %}
+                                {% endif %}
+                                {{ field.errors }}
+                                {{ field }}
+                            </td>
+
+                        {% endfor %}
+                    </tr>
+
+                {% endfor %}
+            </table>
+        <div class="row button-group">
+            <div class="col-md-1">
+                <a class="btn btn-default" href="{% url 'index' %}" role="button">Back</a>
+            </div>
+            <div class="col-md-1">
+                <input class="btn btn-default" type="submit" value="Next">
+            </div>
+        </div>
+    </form>
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $('.formset_row').formset({
+            addText: 'add another operating mode',
+            deleteText: 'remove',
+            prefix: 'operational_modes'
+        });
+    </script>
+{% endblock content %}
+{% block sidebar_right %}
+    {% include "sidebar_right.html" %}
+{% endblock %}
